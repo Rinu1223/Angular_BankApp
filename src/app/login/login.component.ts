@@ -29,10 +29,12 @@ pswdChange(event:any){
   console.log(this.pswd);
   
 }
-login(){
+login(a:any,p:any){
   
-  var accnum=this.accno;
-  var paswd=this.pswd;
+  //var accnum=this.accno;
+ // var paswd=this.pswd;
+ var accnum=a.value;
+ var paswd=p.value;
   let users=this.accountDetails;
   if(accnum in users )
   {
