@@ -4,15 +4,16 @@
       <h2 class="active"> Sign In </h2>
       
   
-      <p>{{aim}}</p>
+      <p>Register</p>
       
   
       <!-- Login Form -->
       <form>
-        <input type="text" id="login" class="fadeIn second" [value]="accno" [(ngModel)]="accno" name="login" placeholder="login">
+        <input type="text" id="uname" class="fadeIn second" [value]="uname" [(ngModel)]="uname" name="login" placeholder="user name">
+        <input type="text" id="login" class="fadeIn second" [value]="accno" [(ngModel)]="accno" name="login" placeholder="account number">
         <input type="text" id="password" class="fadeIn third" name="login" [(ngModel)]="pswd"  placeholder="password">
-        <input type="submit" class="fadeIn fourth" (click)="login()" value="Log In">
-        <input type="button" class="fadeIn fourth" (click)="createNewAccount()"  value="Create New Account">
+        
+        <input type="button" class="fadeIn fourth" (click)="register()"  value="Create New Account">
       </form>
   
       <!-- Remind Passowrd -->
