@@ -1,1 +1,40 @@
-<p>dashboard works!</p>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <h2 class="active">Deposite </h2>
+     <!-- Login Form -->
+        <form (ngSubmit)="deposite()">
+            <input type="text" id="acno" class="fadeIn second" name="login"
+                placeholder="account number" [(ngModel)]="acno">
+            <input type="password" id="password" class="fadeIn third" name="login"
+             placeholder="password" [(ngModel)]="pswd">
+            <input type="text" id="amount" class="fadeIn second" name="login"
+            placeholder="amount" [(ngModel)]="depamount">
+            <input type="submit" class="fadeIn fourth" value="Deposite" >
+            
+        </form>
+
+       
+
+    </div>
+</div>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <h2 class="active"> withdraw </h2>
+     <!-- Login Form -->
+        <form (ngSubmit)="withdraw()">
+            <input type="text" id="txtacno" class="fadeIn second" name="login"
+                placeholder="account number" [(ngModel)]="accno">
+            <input type="password"  id="txtpasswd" class="fadeIn third" name="login"
+             placeholder="password" [(ngModel)]="paswd">
+            <input type="text" id="txtwithdraw" class="fadeIn second" name="login"
+            placeholder="amount" [(ngModel)]="withamout">
+            <input type="submit" class="fadeIn fourth" value="withdraw">
+            
+        </form>
+
+       
+
+    </div>
+</div>

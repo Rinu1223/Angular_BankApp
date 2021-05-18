@@ -8,10 +8,10 @@
       
   
       <!-- Login Form -->
-      <form>
+      <form (ngSubmit)="login()">
         <input type="text" id="login" class="fadeIn second" [value]="accno" [(ngModel)]="accno" name="login" placeholder="login">
         <input type="text" id="password" class="fadeIn third" name="login" [(ngModel)]="pswd"  placeholder="password">
-        <input type="submit" class="fadeIn fourth" (click)="login()" value="Log In">
+        <input type="submit" class="fadeIn fourth"  value="Log In">
         <input type="button" class="fadeIn fourth" (click)="createNewAccount()"  value="Create New Account">
       </form>
   

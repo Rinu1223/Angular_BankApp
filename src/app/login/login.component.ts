@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -10,16 +11,11 @@ export class LoginComponent implements OnInit {
 aim="welcome";
 accno="account number please"
 pswd=""
-  constructor(private router:Router) { }
+  constructor(private router:Router,private dataservice:DataService) { }
 
   ngOnInit(): void {
   }
-   accountDetails:any = {
-    1000: { acno: 1000, actype: "savings", username: "userone", password: "userone", balance: 5000 },
-    1001: { acno: 1001, actype: "savings", username: "usertwo", password: "usertwo", balance: 5000 },
-    1002: { acno: 1002, actype: "current", username: "userthree", password: "userthree", balance: 10000 },
-    1003: { acno: 1003, actype: "current", username: "userfour", password: "userfour", balance: 6000 }
-}
+   
 accnoChange(event:any){
   this.accno=event.target.value;
   console.log(this.accno);
@@ -36,20 +32,11 @@ login(){
  // var paswd=this.pswd;
  var accnum=this.accno;
  var paswd=this.pswd;
-  let users=this.accountDetails;
-  if(accnum in users )
-  {
-    if(paswd ==users[accnum]["password"]){
-      alert("login successful")
-      this.router.navigateByUrl("dashboard")
-    }
-    else{
-      alert("login failed")
-    }
-  }
-  else{
-    alert("invalid accont number")
-  }
+ const result= this.dataservice.login(accnum,paswd)
+ if(result){
+  alert("login successful")
+  this.router.navigateByUrl("dashboard")
+ }
 }
 createNewAccount(){
   this.router.navigateByUrl("createNewAccount")

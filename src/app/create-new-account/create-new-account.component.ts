@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-create-new-account',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateNewAccountComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataservice:DataService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -15,7 +17,17 @@ export class CreateNewAccountComponent implements OnInit {
   uname="";
   pswd="";
   register(){
-    alert("account created");
+    var uname=this.uname;
+    var acno=this.accno;
+    var paswd=this.pswd;
+   const result= this.dataservice.register(uname,acno,paswd)
+   if(result){
+    alert("successfully registered...");
+    this.router.navigateByUrl("");
+   }
+   else{
+    alert("user exit... please Login");
+   }
 
   }
 
