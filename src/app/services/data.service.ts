@@ -52,8 +52,8 @@ export class DataService {
    if(acno in user){
      if(pswd==user[acno]["password"]){
     let depoAmount= user[acno]["balance"]+=parseInt(amount);
-    alert(`your aval balance is : ${depoAmount}`)
-       return true;
+    
+       return depoAmount;
        
      }
      else{
@@ -72,8 +72,8 @@ export class DataService {
      if(paswd==users[acno]["password"]){
        if(amount< users[acno]["balance"]){
          let withAmount= users[acno]["balance"] -=parseInt(amount);
-         alert(`Your aval balance is : ${withAmount}`);
-         return true;
+         
+         return withAmount;
        }
        else{
          alert("insuffcient balance");

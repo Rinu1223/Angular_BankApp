@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
     let depositeAmount=this.depamount;
    const result= this.dataservice.deposite(accno,pasword,depositeAmount)
    if(result){
-    alert("amount deposited");
+    alert(`the given amount : ${depositeAmount} is credited, your aval balance is : ${result}`)
    }
     
   }
@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
    const DataResult= this.dataservice.withdraw(accno,pasword,withdrawAmount)
 
  if(DataResult){
-    alert("Withdraw successfull");
+  alert(`${withdrawAmount} is debited from your account.Your aval balance is : ${DataResult}`);
    }
   }
 }
