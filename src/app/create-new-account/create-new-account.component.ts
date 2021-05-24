@@ -1,4 +1,6 @@
+import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
@@ -9,18 +11,23 @@ import { DataService } from '../services/data.service';
 })
 export class CreateNewAccountComponent implements OnInit {
 
-  constructor(private dataservice:DataService, private router:Router) { }
+  constructor(private dataservice:DataService, private router:Router,private fb:FormBuilder) { }
 
   ngOnInit(): void {
   }
-  accno="";
-  uname="";
-  pswd="";
+  registerForm=this.fb.group({
+    uname:['',[Validators.required,Validators.pattern('[a-zA-Z]*')]],
+    accno:['',[Validators.required,Validators.minLength(4),Validators.pattern('[0-9]*')]],
+    pswd:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]]
+
+  })
+  
   register(){
-    var uname=this.uname;
-    var acno=this.accno;
-    var paswd=this.pswd;
-   const result= this.dataservice.register(uname,acno,paswd)
+    if(this.registerForm.valid){
+      var username=this.registerForm.value.uname;
+    var acno=this.registerForm.value.accno;
+    var paswd=this.registerForm.value.pswd;
+   const result= this.dataservice.register(username,acno,paswd)
    if(result){
     alert("successfully registered...");
     this.router.navigateByUrl("");
@@ -28,6 +35,12 @@ export class CreateNewAccountComponent implements OnInit {
    else{
     alert("user exit... please Login");
    }
+    }
+    else{
+//if(this.registerForm.get('uname')?.errors){
+alert("user name required");
+//}
+    }
 
   }
 

@@ -1,15 +1,24 @@
+<div class="container">
+    <h3>Welcome {{user}}</h3>
+
 <div class="wrapper fadeInDown">
     <div id="formContent">
         <!-- Tabs Titles -->
         <h2 class="active">Deposite </h2>
      <!-- Login Form -->
-        <form (ngSubmit)="deposite()">
+        <form (ngSubmit)="deposite()" [formGroup]="depositForm">
             <input type="text" id="acno" class="fadeIn second" name="login"
-                placeholder="account number" [(ngModel)]="acno">
+                placeholder="account number" formControlName="acno">
+                <div class="errors" *ngIf="(depositForm.get('acno')?.touched || depositForm.get('acno')?.dirty) && depositForm.get('acno')?.errors">invalid account number</div>
+
             <input type="password" id="password" class="fadeIn third" name="login"
-             placeholder="password" [(ngModel)]="pswd">
+             placeholder="password" formControlName="pswd">
+             <div class="errors" *ngIf="(depositForm.get('pswd')?.touched || depositForm.get('pswd')?.dirty) && depositForm.get('pswd')?.errors">invalid password</div>
+
             <input type="text" id="amount" class="fadeIn second" name="login"
-            placeholder="amount" [(ngModel)]="depamount">
+            placeholder="amount" formControlName="depamount">
+            <div class="errors" *ngIf="(depositForm.get('depamount')?.touched || depositForm.get('depamount')?.dirty) && depositForm.get('depamount')?.errors">invalid amount</div>
+
             <input type="submit" class="fadeIn fourth" value="Deposite" >
             
         </form>
@@ -18,18 +27,25 @@
 
     </div>
 </div>
+</div>
 <div class="wrapper fadeInDown">
     <div id="formContent">
         <!-- Tabs Titles -->
         <h2 class="active"> withdraw </h2>
      <!-- Login Form -->
-        <form (ngSubmit)="withdraw()">
+        <form (ngSubmit)="withdraw()" [formGroup]="WithdrawForm">
             <input type="text" id="txtacno" class="fadeIn second" name="login"
-                placeholder="account number" [(ngModel)]="accno">
+                placeholder="account number" formControlName="accno">
+                <div class="errors" *ngIf="(depositForm.get('accno')?.touched || depositForm.get('accno')?.dirty) && depositForm.get('accno')?.errors">invalid account number</div>
+
             <input type="password"  id="txtpasswd" class="fadeIn third" name="login"
-             placeholder="password" [(ngModel)]="paswd">
+             placeholder="password" formControlName="paswd">
+             <div class="errors" *ngIf="(depositForm.get('paswd')?.touched || depositForm.get('paswd')?.dirty) && depositForm.get('paswd')?.errors">invalid password</div>
+
             <input type="text" id="txtwithdraw" class="fadeIn second" name="login"
-            placeholder="amount" [(ngModel)]="withamout">
+            placeholder="amount" formControlName="withamout">
+            <div class="errors" *ngIf="(depositForm.get('withamout')?.touched || depositForm.get('withamout')?.dirty) && depositForm.get('withamout')?.errors">invalid amount</div>
+
             <input type="submit" class="fadeIn fourth" value="withdraw">
             
         </form>

@@ -8,11 +8,15 @@
       
   
       <!-- Login Form -->
-      <form (ngSubmit)="register()">
-        <input type="text" id="uname" class="fadeIn second" [value]="uname" [(ngModel)]="uname" name="login" placeholder="user name">
-        <input type="text" id="login" class="fadeIn second" [value]="accno" [(ngModel)]="accno" name="login" placeholder="account number">
-        <input type="text" id="password" class="fadeIn third"  [(ngModel)]="pswd" name="login" placeholder="password">
-        
+      <form (ngSubmit)="register()" [formGroup]="registerForm">
+        <input type="text" id="uname" class="fadeIn second"  formControlName="uname" name="login" placeholder="user name">
+        <div class="errors" *ngIf="(registerForm.get('uname')?.touched || registerForm.get('uname')?.dirty) && registerForm.get('uname')?.errors">invalid user name</div>
+        <input type="text" id="login" class="fadeIn second"  formControlName="accno" name="login" placeholder="account number">
+        <div class="errors" *ngIf="(registerForm.get('accno')?.touched || registerForm.get('accno')?.dirty) && registerForm.get('accno')?.errors">invalid account number</div>
+
+        <input type="text" id="password" class="fadeIn third"  formControlName="pswd" name="login" placeholder="password">
+        <div class="errors" *ngIf="(registerForm.get('pswd')?.touched || registerForm.get('pswd')?.dirty) && registerForm.get('pswd')?.errors">invalid password</div>
+
         <input type="submit" class="fadeIn fourth"   value="Create New Account">
         <a routerLink="">log in</a>
       </form>

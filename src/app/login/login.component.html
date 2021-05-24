@@ -8,9 +8,13 @@
       
   
       <!-- Login Form -->
-      <form (ngSubmit)="login()">
-        <input type="text" id="login" class="fadeIn second" [value]="accno" [(ngModel)]="accno" name="login" placeholder="login">
-        <input type="text" id="password" class="fadeIn third" name="login" [(ngModel)]="pswd"  placeholder="password">
+      <form (ngSubmit)="login()" [formGroup]="loginform">
+        <input type="text"  class="fadeIn second" [value]="accno" formControlName="accno" name="login" placeholder="login">
+        <div class="errors" *ngIf="(loginform.get('accno')?.touched || loginform.get('accno')?.dirty) && loginform.get('accno')?.errors">invalid account number</div>
+
+        <input type="text"  class="fadeIn third" name="login" formControlName="pswd"  placeholder="password">
+        <div class="errors" *ngIf="(loginform.get('pswd')?.touched || loginform.get('pswd')?.dirty) && loginform.get('pswd')?.errors">invalid Passowrd</div>
+
         <input type="submit" class="fadeIn fourth"  value="Log In">
         <input type="button" class="fadeIn fourth" (click)="createNewAccount()"  value="Create New Account">
       </form>
