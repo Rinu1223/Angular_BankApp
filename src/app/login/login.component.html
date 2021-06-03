@@ -9,7 +9,7 @@
   
       <!-- Login Form -->
       <form (ngSubmit)="login()" [formGroup]="loginform">
-        <input type="text"  class="fadeIn second" [value]="accno" formControlName="accno" name="login" placeholder="login">
+        <input type="text"  class="fadeIn second" [value]="accno" formControlName="accno" name="login" placeholder="account number">
         <div class="errors" *ngIf="(loginform.get('accno')?.touched || loginform.get('accno')?.dirty) && loginform.get('accno')?.errors">invalid account number</div>
 
         <input type="text"  class="fadeIn third" name="login" formControlName="pswd"  placeholder="password">

@@ -35,16 +35,22 @@ loginform=this.fb.group({
 
 login(){
   
-  //var accnum=this.accno;
- // var paswd=this.pswd;
  if(this.loginform.valid){
  var accnum=this.loginform.value.accno;
  var paswd=this.loginform.value.pswd;
- const result= this.dataservice.login(accnum,paswd)
- if(result){
-  alert("login successful")
-  this.router.navigateByUrl("dashboard")
- }
+  this.dataservice.login(accnum,paswd)
+  .subscribe((result:any)=>{
+    if(result){
+      localStorage.setItem("name",result.name)
+      alert(result.message);
+      this.router.navigateByUrl("dashboard");
+    }
+  },
+  (result)=>{
+    alert(result.error.message);
+  
+  })
+  
 }
 else
 {

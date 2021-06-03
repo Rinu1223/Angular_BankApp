@@ -27,19 +27,22 @@ export class CreateNewAccountComponent implements OnInit {
       var username=this.registerForm.value.uname;
     var acno=this.registerForm.value.accno;
     var paswd=this.registerForm.value.pswd;
-   const result= this.dataservice.register(username,acno,paswd)
-   if(result){
-    alert("successfully registered...");
-    this.router.navigateByUrl("");
-   }
-   else{
-    alert("user exit... please Login");
-   }
-    }
+    this.dataservice.register(username,acno,paswd)
+    .subscribe((result:any)=>{
+      if(result){
+        alert(result.message);
+        this.router.navigateByUrl("");
+      }
+      },
+      (result)=>{
+        alert(result.error.message)
+      
+    })
+  }
     else{
-//if(this.registerForm.get('uname')?.errors){
-alert("user name required");
-//}
+
+alert("Invalid form");
+
     }
 
   }

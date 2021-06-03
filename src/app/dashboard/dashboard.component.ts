@@ -9,8 +9,10 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  
-  constructor(private router:Router, private dataservice:DataService,private fb:FormBuilder) { }
+  user:any
+  constructor(private router:Router, private dataservice:DataService,private fb:FormBuilder) {
+   this.user= localStorage.getItem("name")
+   }
   
   depositForm=this.fb.group({
     acno:['',[Validators.required,Validators.minLength(4),Validators.pattern('[0-9]*')]],
@@ -23,7 +25,7 @@ export class DashboardComponent implements OnInit {
   paswd:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]],
  withamout:['',[Validators.required,Validators.minLength(1),Validators.pattern('[0-9]*')]]
 })
-user=this.dataservice.currentUser;
+
   ngOnInit(): void {
   }
  
@@ -32,10 +34,17 @@ user=this.dataservice.currentUser;
     let accno=this.depositForm.value.acno;
     let pasword=this.depositForm.value.pswd;
     let depositeAmount=this.depositForm.value.depamount;
-   const result= this.dataservice.deposite(accno,pasword,depositeAmount)
-   if(result){
-    alert(`the given amount : ${depositeAmount} is credited, your aval balance is : ${result}`)
-   }
+    this.dataservice.deposite(accno,pasword,depositeAmount)
+    .subscribe((result:any)=>{
+      if(result){
+        alert(result.message);
+       }
+      },
+      (result)=>{
+        alert(result.error.message)
+      
+    })
+   
   }
   else{
     alert("Invalid Form");
@@ -47,11 +56,17 @@ user=this.dataservice.currentUser;
     let accno=this.WithdrawForm.value.accno;
     let pasword=this.WithdrawForm.value.paswd;
     let withdrawAmount=this.WithdrawForm.value.withamout;
-   const DataResult= this.dataservice.withdraw(accno,pasword,withdrawAmount)
-
- if(DataResult){
-  alert(`${withdrawAmount} is debited from your account.Your aval balance is : ${DataResult}`);
-   }
+    this.dataservice.withdraw(accno,pasword,withdrawAmount)
+    .subscribe((result:any)=>{
+      if(result){
+        alert(result.message);
+         }
+        },
+        (result)=>{
+          alert(result.error.message)
+        
+    })
+ 
   }
   else{
     alert("Invalid Form")
