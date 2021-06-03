@@ -32,9 +32,9 @@ export class DashboardComponent implements OnInit {
   deposite(){
     if(this.depositForm.valid){
     let accno=this.depositForm.value.acno;
-    let pasword=this.depositForm.value.pswd;
+    let password=this.depositForm.value.pswd;
     let depositeAmount=this.depositForm.value.depamount;
-    this.dataservice.deposite(accno,pasword,depositeAmount)
+    this.dataservice.deposite(accno,password,depositeAmount)
     .subscribe((result:any)=>{
       if(result){
         alert(result.message);
@@ -54,9 +54,9 @@ export class DashboardComponent implements OnInit {
   withdraw(){
     if(this.WithdrawForm.valid){
     let accno=this.WithdrawForm.value.accno;
-    let pasword=this.WithdrawForm.value.paswd;
+    let password=this.WithdrawForm.value.paswd;
     let withdrawAmount=this.WithdrawForm.value.withamout;
-    this.dataservice.withdraw(accno,pasword,withdrawAmount)
+    this.dataservice.withdraw(accno,password,withdrawAmount)
     .subscribe((result:any)=>{
       if(result){
         alert(result.message);

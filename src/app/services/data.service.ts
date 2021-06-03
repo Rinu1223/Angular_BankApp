@@ -5,6 +5,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
+  options={
+    withCredentials: true
+  }
 //   currentUser="";
 //   accountDetails:any = {
 //     1000: { acno: 1000, actype: "savings", username: "userone", password: "userone", balance: 5000 },
@@ -43,22 +46,23 @@ export class DataService {
     acno,
     paswd
   }
- return this.http.post('http://localhost:3000/login',data)
+ return this.http.post('http://localhost:3000/login',data,this.options)
  }
- deposite(acno:any,pswd:any,amount:any){
+ deposite(acno:any,password:any,amount:any){
+   alert(password)
    const data={
      acno,
-     pswd,
+     password,
      amount
    }
-   return this.http.post('http://localhost:3000/deposite',data)
+   return this.http.post('http://localhost:3000/deposite',data,this.options)
  }
- withdraw(acno:any,paswd:any,amount:any){
+ withdraw(acno:any,password:any,amount:any){
   const data={
     acno,
-    paswd,
+    password,
     amount
   }
-  return this.http.post('http://localhost:3000/withdraw',data)
+  return this.http.post('http://localhost:3000/withdraw',data,this.options)
  }
 }
